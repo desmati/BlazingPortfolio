@@ -9,25 +9,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Content Include="Assets\Fonts\open-iconic\FONT-LICENSE" />
-		<Content Include="Assets\Fonts\open-iconic\font\css\open-iconic-bootstrap.min.css" />
-		<Content Include="Assets\Fonts\open-iconic\font\fonts\open-iconic.eot" />
-		<Content Include="Assets\Fonts\open-iconic\font\fonts\open-iconic.otf" />
-		<Content Include="Assets\Fonts\open-iconic\font\fonts\open-iconic.svg" />
-		<Content Include="Assets\Fonts\open-iconic\font\fonts\open-iconic.ttf" />
-		<Content Include="Assets\Fonts\open-iconic\font\fonts\open-iconic.woff" />
-		<Content Include="Assets\Fonts\open-iconic\ICON-LICENSE" />
-		<Content Include="Assets\Fonts\open-iconic\README.md" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="Blazor.Bootstrap" Version="1.7.3" />
 		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="7.0.5" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.5" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.5" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.5" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.5" />
-		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.2" />
 	</ItemGroup>
 
 	<!-- Add SCSS files to dotnet watch -->
@@ -43,6 +30,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Folder Include="Assets\" />
 		<Folder Include="wwwroot\css\" />
 	</ItemGroup>
 
