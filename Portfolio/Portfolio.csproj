@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UserSecretsId>aspnet-Portfolio-9d9cc9c1-097f-40c4-aff9-03c17f253f5c</UserSecretsId>
+		<!--<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>-->
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Content Include="Assets\Fonts\open-iconic\FONT-LICENSE" />
+		<Content Include="Assets\Fonts\open-iconic\font\css\open-iconic-bootstrap.min.css" />
+		<Content Include="Assets\Fonts\open-iconic\font\fonts\open-iconic.eot" />
+		<Content Include="Assets\Fonts\open-iconic\font\fonts\open-iconic.otf" />
+		<Content Include="Assets\Fonts\open-iconic\font\fonts\open-iconic.svg" />
+		<Content Include="Assets\Fonts\open-iconic\font\fonts\open-iconic.ttf" />
+		<Content Include="Assets\Fonts\open-iconic\font\fonts\open-iconic.woff" />
+		<Content Include="Assets\Fonts\open-iconic\ICON-LICENSE" />
+		<Content Include="Assets\Fonts\open-iconic\README.md" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Blazor.Bootstrap" Version="1.7.3" />
+		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="7.0.5" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.5" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.5" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.5" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.5" />
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.2" />
+	</ItemGroup>
+
+	<!-- Add SCSS files to dotnet watch -->
+	<ItemGroup>
+		<Watch Include="**\*.scss" />
+		<Watch Remove="pages\Index.razor.scss" />
+		<None Update="**\*.css" watch="false" />
+	</ItemGroup>
+
+	<!-- Compile SCSS files into CSS -->
+	<ItemGroup>
+		<ComponentScssFiles Include="**/*/*.scss" Exclude="node_modules/**;wwwroot/**;Styles/**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="wwwroot\css\" />
+	</ItemGroup>
+
+	<Target Name="CompileComponentSass" BeforeTargets="CompileGlobalSass">
+		<Message Text="Compiling Component SCSS files" Importance="high" />
+		<Exec Condition="!$([System.Text.RegularExpressions.Regex]::IsMatch('%(ComponentScssFiles.Identity)', `.*[/\\]_.*`))" Command="npx sass --style=compressed --no-source-map --load-path=Styles/Core %(ComponentScssFiles.Identity) %(relativedir)%(filename).css" />
+	</Target>
+
+	<Target Name="CompileGlobalSass" BeforeTargets="Compile">
+		<Message Text="Compiling Global SCSS files" Importance="high" />
+		<Exec Command="npx sass --style=compressed Styles:wwwroot/css" />
+	</Target>
+</Project>
